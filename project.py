@@ -1,6 +1,6 @@
 import random
 
-def print_board(board):
+def print_board(board): # 보드를 생성
     for i in range(len(board)):
         if i % 3 == 0 and i != 0:
             print("- - - - - - - - - - - - ")
@@ -19,7 +19,7 @@ def find_empty(board):
     for i in range(len(board)):
         for j in range(len(board[0])):
             if board[i][j] == 0:
-                return (i, j) 
+                return (i, j) # (row, column)
     return None
 
 
@@ -53,52 +53,7 @@ def solve(board):
     numbers = list(range(1, 10))
     random.shuffle(numbers)  
 
-    for num in numbers:
-        if is_valid(board, num, (row, col)):
-            board[row][col] = num
-
-            if solve(board):
-                return True
-
-            board[row][col] = 0
-
-    return False
-
-
-def generate_random_puzzle():
-    board = [[0]*9 for _ in range(9)]
-    solve(board) 
-
-    empty_cells = 81 - random.randint(50, 60) 
-    for _ in range(empty_cells):
-        while True:
-            row = random.randint(0, 8)
-            col = random.randint(0, 8)
-            if board[row][col] != 0:
-                board[row][col] = 0
-                break
-    return board
-
-def solve_puzzle(board):
-    solved_board = [row[:] for row in board] 
-    solve(solved_board)  
-    return solved_board
-
-def is_board_full(board):
-    for row in board:
-        if 0 in row:
-            return False
-    return True
-
-def get_user_input():
-    while True:
-        try:
-            print("\nEnter row, column, and number to place (e.g., 'row column number'): ")
-            user_input = input().strip().split()
-            if len(user_input) != 3:
-                raise ValueError("Please enter three values.")
-            
-            row = int(user_input[0]) - 1 
+    for nu경
             col = int(user_input[1]) - 1  
             num = int(user_input[2])
             
